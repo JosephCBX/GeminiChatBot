@@ -3,7 +3,7 @@ This is all frontend and the user pastes their API key. It stays in the users br
 
 # How to use
 
-1. Go to <a href="https://console.cloud.google.com/" target="_blank"><p>console.cloud.google.com</p></a>
+1. Go to <a href="https://console.cloud.google.com/" target="_blank"><p>https://console.cloud.google.com</p></a>
 
 2. Sign into your Google Account and accept the Terms of Service
 
