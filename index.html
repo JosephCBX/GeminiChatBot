@@ -3,31 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Gemini Chat – Dark Mode</title>
+  <title>Gemini Chat</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="app">
     <aside class="sidebar">
-      <div class="sidebar-header">
-        <h2>Chats</h2>
-        <button id="newChatBtn">+ New Chat</button>
-      </div>
-      <ul id="chatList"></ul>
-      <div class="sidebar-footer">
+      <h2>Chats</h2>
+      <button id="newChatBtn" class="new-chat">+ New Chat</button>
+      <ul id="chatList" class="chat-list"></ul>
+      <div class="key-section">
         <input type="password" id="apiKeyInput" placeholder="Paste your Gemini API Key" />
         <button id="saveKeyBtn">Save Key</button>
       </div>
     </aside>
 
-    <main class="chat-area">
+    <section class="chat-area">
       <div id="chatContainer" class="chat-container"></div>
       <div class="input-area">
         <textarea id="promptInput" placeholder="Type your message…"></textarea>
         <button id="sendBtn">Send</button>
       </div>
-    </main>
+    </section>
   </div>
+
   <script src="app.js"></script>
 </body>
 </html>
