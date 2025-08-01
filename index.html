@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gemini Chat (Front-End Only)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="sidebar">
+      <input type="password" id="apiKeyInput" placeholder="Paste your Gemini API Key" />
+      <button id="saveKeyBtn">Save Key</button>
+      <button id="clearChatBtn">New Chat</button>
+    </div>
+    <div class="chat-area">
+      <div id="chatContainer" class="chat-container"></div>
+      <div class="input-area">
+        <textarea id="promptInput" placeholder="Type your message…"></textarea>
+        <button id="sendBtn">Send</button>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
