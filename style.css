@@ -1,7 +1,9 @@
 /* Reset & base */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body, html { height:100%; width:100%; font-family: 'Inter', sans-serif; background:#343541; color:#ECECF1; }
-.app { display:flex; height:100vh; }
+body, html { height: 100%; width: 100%; font-family: 'Inter', sans-serif; background: #343541; color: #ECECF1; }
+
+/* App layout */
+.app { display: flex; height: 100vh; }
 
 /* Sidebar */
 .sidebar {
@@ -30,17 +32,54 @@ body, html { height:100%; width:100%; font-family: 'Inter', sans-serif; backgrou
   flex: 1;
   overflow-y: auto;
   list-style: none;
+  padding: 0;
 }
 .chat-item {
+  display: flex;
+  align-items: center;
   padding: 12px 16px;
   cursor: pointer;
   border-bottom: 1px solid #2a2b33;
 }
-.chat-item.active {
-  background: #343541;
+.chat-item.active { background: #343541; }
+.chat-item:hover { background: #2a2b33; }
+
+/* Title pushes buttons to right */
+.chat-item span {
+  flex: 1;
 }
-.chat-item:hover {
-  background: #2a2b33;
+
+/* Actions container */
+.chat-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* Rename button */
+.rename-btn {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 4px;
+}
+.chat-item:hover .rename-btn {
+  color: #ECECF1;
+}
+
+/* Delete button */
+.delete-btn {
+  background: none;
+  border: none;
+  color: #e55353;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 4px;
+  margin-left: 8px;
+}
+.chat-item:hover .delete-btn {
+  color: #ff7777;
 }
 
 /* API key section pinned to bottom */
@@ -69,70 +108,71 @@ body, html { height:100%; width:100%; font-family: 'Inter', sans-serif; backgrou
 .key-section button:hover { background: #0E8E6A; }
 
 /* Chat area */
-.chat-area { flex:1; display:flex; flex-direction:column; }
+.chat-area { flex: 1; display: flex; flex-direction: column; }
 .chat-container {
-  flex:1;
-  padding:20px;
-  overflow-y:auto;
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
 }
 
-/* Messages */
-.message { display:flex; margin-bottom:12px; }
-.message.user { justify-content:flex-end; }
-.message.bot  { justify-content:flex-start; }
+/* Message bubbles */
+.message { display: flex; margin-bottom: 12px; }
+.message.user { justify-content: flex-end; }
+.message.bot  { justify-content: flex-start; }
 .bubble {
-  max-width:60%;
-  padding:12px;
-  border-radius:8px;
-  line-height:1.4;
+  max-width: 60%;
+  padding: 12px;
+  border-radius: 8px;
+  line-height: 1.4;
 }
-.message.user .bubble { background:#40414F; border-bottom-right-radius:0; }
-.message.bot  .bubble { background:#444654; border-bottom-left-radius:0; }
+.message.user .bubble { background: #40414F; border-bottom-right-radius: 0; }
+.message.bot  .bubble { background: #444654; border-bottom-left-radius: 0; }
 
-/* Typing indicator */
+/* Typing‐indicator dots */
 .typing-bubble {
-  display:inline-flex;
-  align-items:center;
+  display: inline-flex;
+  align-items: center;
 }
 .typing-dot {
-  width:8px;
-  height:8px;
-  margin:0 3px;
-  background:#ECECF1;
-  border-radius:50%;
-  opacity:0.3;
+  width: 8px;
+  height: 8px;
+  margin: 0 3px;
+  background: #ECECF1;
+  border-radius: 50%;
+  opacity: 0.3;
   animation: blink 1.4s infinite;
 }
 .typing-dot:nth-child(2) { animation-delay: 0.2s; }
 .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
 @keyframes blink {
-  0%,80%,100% { opacity:0.3; }
-  40%         { opacity:1;   }
+  0%, 80%, 100% { opacity: 0.3; }
+  40%         { opacity: 1;   }
 }
 
 /* Input area */
 .input-area {
-  display:flex;
-  padding:12px;
-  background:#202123;
+  display: flex;
+  padding: 12px;
+  background: #202123;
 }
 .input-area textarea {
-  flex:1;
-  padding:10px;
-  border:none;
-  border-radius:4px;
-  background:#40414F;
-  color:#ECECF1;
-  resize:none;
-  height:50px;
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background: #40414F;
+  color: #ECECF1;
+  resize: none;
+  height: 50px;
 }
 .input-area button {
-  margin-left:8px;
-  padding:10px 20px;
-  border:none;
-  border-radius:4px;
-  background:#10A37F;
-  color:#fff;
-  cursor:pointer;
+  margin-left: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background: #10A37F;
+  color: #fff;
+  cursor: pointer;
 }
-.input-area button:hover { background:#0E8E6A; }
+.input-area button:hover { background: #0E8E6A; }

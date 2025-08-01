@@ -1,15 +1,16 @@
 // --------- State & Storage Helpers ----------
 const STORAGE_KEY = 'geminiChatApp';
+
 function loadState() {
   return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
 }
+
 function saveState(state) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
-// --------- Initialization ----------
+// --------- Main ----------
 document.addEventListener('DOMContentLoaded', () => {
-  // Elements
   const chatListEl    = document.getElementById('chatList');
   const newChatBtn    = document.getElementById('newChatBtn');
   const saveKeyBtn    = document.getElementById('saveKeyBtn');
@@ -18,28 +19,79 @@ document.addEventListener('DOMContentLoaded', () => {
   const promptInput   = document.getElementById('promptInput');
   const sendBtn       = document.getElementById('sendBtn');
 
-  // Load app state
+  // Load or init state
   const state = loadState();
-  state.chats ||= [];             // array of { id, title, messages: [ {sender, text} ] }
-  state.activeChatId ||= null;
-  state.apiKey ||= '';
-
-  // Restore API key
+  state.chats         ||= [];
+  state.activeChatId  ||= null;
+  state.apiKey        ||= '';
   apiKeyInput.value = state.apiKey;
 
-  // Render chat list & select first if none
+  // Render sidebar chat list
   function renderChatList() {
     chatListEl.innerHTML = '';
-    state.chats.forEach(chat => {
+    state.chats.forEach((chat, idx) => {
       const li = document.createElement('li');
-      li.textContent = chat.title;
       li.className = 'chat-item' + (chat.id === state.activeChatId ? ' active' : '');
+
+      // title
+      const span = document.createElement('span');
+      span.textContent = chat.title;
+      li.appendChild(span);
+
+      // actions wrapper
+      const actions = document.createElement('div');
+      actions.className = 'chat-actions';
+
+      // rename button
+      const renameBtn = document.createElement('button');
+      renameBtn.className = 'rename-btn';
+      renameBtn.innerText = '✏️';
+      renameBtn.onclick = e => {
+        e.stopPropagation();
+        const newName = prompt('Rename chat:', chat.title);
+        if (newName?.trim()) {
+          chat.title = newName.trim();
+          saveState(state);
+          renderChatList();
+        }
+      };
+      actions.appendChild(renameBtn);
+
+      // delete button
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'delete-btn';
+      deleteBtn.innerText = '🗑️';
+      deleteBtn.onclick = e => {
+        e.stopPropagation();
+        if (!confirm(`Delete chat "${chat.title}"?`)) return;
+        state.chats.splice(idx, 1);
+        if (state.activeChatId === chat.id) {
+          if (state.chats.length) {
+            state.activeChatId = state.chats[Math.max(0, idx - 1)].id;
+          } else {
+            state.activeChatId = null;
+          }
+        }
+        saveState(state);
+        if (state.chats.length === 0) {
+          newChatBtn.click();
+        } else {
+          renderChatList();
+          renderMessages();
+        }
+      };
+      actions.appendChild(deleteBtn);
+
+      li.appendChild(actions);
+
+      // activate on click
       li.onclick = () => {
         state.activeChatId = chat.id;
         saveState(state);
         renderChatList();
         renderMessages();
       };
+
       chatListEl.appendChild(li);
     });
   }
@@ -52,13 +104,14 @@ document.addEventListener('DOMContentLoaded', () => {
     chat.messages.forEach(m => addMessageToDOM(m.sender, m.text));
   }
 
-  // Add message DOM helper
+  // Add a message bubble (with Markdown)
   function addMessageToDOM(who, text) {
     const m = document.createElement('div');
     m.className = `message ${who}`;
     const b = document.createElement('div');
     b.className = 'bubble';
-    b.textContent = text;
+    const rawHtml = marked.parse(text);
+    b.innerHTML = DOMPurify.sanitize(rawHtml);
     m.appendChild(b);
     chatContainer.appendChild(m);
     chatContainer.scrollTop = chatContainer.scrollHeight;
@@ -82,11 +135,10 @@ document.addEventListener('DOMContentLoaded', () => {
     chatContainer.scrollTop = chatContainer.scrollHeight;
   }
   function hideTyping() {
-    const old = document.getElementById('typing-indicator');
-    if (old) old.remove();
+    document.getElementById('typing-indicator')?.remove();
   }
 
-  // Send to Gemini
+  // Send prompt to Gemini
   async function sendToGemini(prompt) {
     showTyping();
     try {
@@ -95,9 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }]
-          })
+          body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
         }
       );
       const data = await res.json();
@@ -110,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Add message & persist
+  // Handle sending a message
   async function handleSend() {
     const text = promptInput.value.trim();
     if (!text) return;
@@ -119,13 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const chat = state.chats.find(c => c.id === state.activeChatId);
     if (!chat) return;
 
-    // User message
     chat.messages.push({ sender: 'user', text });
     addMessageToDOM('user', text);
     promptInput.value = '';
     saveState(state);
 
-    // Bot response
     const reply = await sendToGemini(text);
     chat.messages.push({ sender: 'bot', text: reply });
     addMessageToDOM('bot', reply);
@@ -150,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
     alert('✅ Key saved');
   });
 
-  // Send button
+  // Send triggers
   sendBtn.addEventListener('click', handleSend);
   promptInput.addEventListener('keydown', e => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -159,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // On load: if no chats, create one
+  // On load: ensure at least one chat exists
   if (state.chats.length === 0) {
     newChatBtn.click();
   } else {
