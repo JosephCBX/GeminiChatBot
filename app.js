@@ -179,6 +179,15 @@ document.addEventListener('DOMContentLoaded', () => {
     addMessageToDOM('bot', reply);
     saveState(state);
   }
+  // inside your DOMContentLoaded, after defining handleSend():
+
+promptInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    handleSend();
+  }
+});
+
 
   // New chat
   newChatBtn.addEventListener('click', () => {
