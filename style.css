@@ -1,0 +1,4 @@
+/* …dark-mode styles from earlier… */
+body, html { height:100%; font-family: sans-serif; background:#343541; color:#ECECF1; margin:0; }
+.app { display:flex; height:100%; }
+/* sidebar, chat-area, messages, input styling… */
