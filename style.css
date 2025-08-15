@@ -189,3 +189,87 @@ body, html { height: 100%; width: 100%; font-family: 'Inter', sans-serif; backgr
 .bubble li {
   margin-bottom: 0.25em;
 }
+
+
+/* styles and stuff for the homepage and what not */
+
+/* ====== Top Nav (dark) ====== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #202123;
+  border-bottom: 1px solid #2a2b33;
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  font-weight: 600;
+  color: #ECECF1;
+  text-decoration: none;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+.nav-links a {
+  display: inline-block;
+  padding: 8px 12px;
+  color: #ECECF1;
+  text-decoration: none;
+  border-radius: 6px;
+}
+.nav-links a:hover {
+  background: #2a2b33;
+}
+.nav-links a[aria-current="page"] {
+  background: #10A37F;
+  color: #fff;
+}
+
+/* Basic page layout for non-chat pages */
+.page {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+.hero h1 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+.hero p {
+  color: #c9c9d1;
+  margin-bottom: 16px;
+}
+.btn {
+  display: inline-block;
+  background: #10A37F;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+.btn:hover { background: #0E8E6A; }
+
+.download-list { margin-top: 12px; padding-left: 1rem; }
+
+.download-btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* Darker background on mouse-over */
+.download-btn:hover {
+  background-color: RoyalBlue;
+}

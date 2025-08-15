@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ChatGMI</title>
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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" />
+<link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAChUlEQVR4nH2TPUxTcRTFz/2/99rCqwVUqtQPUkyMlCAhjYkaTVNiXAiGBOli4lgghsGBARbswuqo1U0nqSQkLA5KrLjRQmIEohKRGqyAAfnoB33v/a+DWmOp3vnk5HfPPZdQZhggAMi2tXkAQJ+c/MIACOBSrShngEBAIYBJUQbY5hgAwAgElHLSfQYMUMztZg4EVFNzdK27Tl7n4WE15L7Fv8n+TxAOq6FYzNrSXX2oOno87Tl37GH+Ql8sFrIeRBNqqbzoyAAh6lepJ2lsdl1rtXT31HtnY8Wb6lYsuny5JXZeHht0zvqjrCV7YALEAEDMILyEQkGYAPC976o/76ibSDma66a1FrlgP4W0/YTYZkrnTKXj9SAlASAwzGo8AusPgc9ny/aK3i3DM7Kk+fVpeV5+kE0iZR7BpmWXlqoJSyJjMYZQg3vJHjIAgLIvqus1qd028/ZOg131swUvpo2L8l3+kkjvnsZW7iDylgaLSYIghA2QBpYZGIeBuyoAyAoF2SoHNip0fN5Usby9h6+cwW5+D4awIC2tWIDSIhRXGH3bbWtQVnsX5aGR2R2vPrfSJHe2WkRhxwsjr0sIu2CJDBhDuRzuz0eoUDbE0YVOf8o8PDG/0VD3ccUn97bPgEyvkIZIF/Jqx0xJiIIITEGYDFAiEdZCjeNJ5Hbb9cpvGfXACkw9Dapcz9jEbvvMICX9UdYApniEiqf8u0eJsAYAN16F+9um7nDzxBNuffysHwD80YT2zyIVh0HdsW6xVrtGq4Wzn7KFGk45yYv1JkYoJEtz3F9lAsdqfRQPxs1Vzj3d0dbGEIyYqJ2jMkcoQ/CLAgRUPL/pAYDclUdf8POf9xn8AL0nIAGtwNLxAAAAAElFTkSuQmCC" />
+
+
+  <!-- Markdown + Sanitizer -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+
+  <style>
+    /* Reset & base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body, html { height: 100%; width: 100%; font-family: 'Inter', sans-serif; background: #343541; color: #ECECF1; }
+
+/* App layout */
+.app { display: flex; height: 100vh; }
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: #202123;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar h2 {
+  padding: 16px;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #444;
+}
+.new-chat {
+  margin: 8px 16px;
+  padding: 8px;
+  background: #10A37F;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+.new-chat:hover { background: #0E8E6A; }
+
+.chat-list {
+  flex: 1;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+}
+.chat-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #2a2b33;
+}
+.chat-item.active { background: #343541; }
+.chat-item:hover { background: #2a2b33; }
+
+/* Title pushes buttons to right */
+.chat-item span {
+  flex: 1;
+}
+
+/* Actions container */
+.chat-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* Rename button */
+.rename-btn {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 4px;
+}
+.chat-item:hover .rename-btn {
+  color: #ECECF1;
+}
+
+/* Delete button */
+.delete-btn {
+  background: none;
+  border: none;
+  color: #e55353;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 4px;
+  margin-left: 8px;
+}
+.chat-item:hover .delete-btn {
+  color: #ff7777;
+}
+
+/* API key section pinned to bottom */
+.key-section {
+  padding: 16px;
+  border-top: 1px solid #444;
+  display: flex;
+  flex-direction: column;
+}
+.key-section input {
+  padding: 8px;
+  margin-bottom: 8px;
+  border: none;
+  border-radius: 4px;
+  background: #40414F;
+  color: #ECECF1;
+}
+.key-section button {
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background: #10A37F;
+  color: #fff;
+  cursor: pointer;
+}
+.key-section button:hover { background: #0E8E6A; }
+
+/* Chat area */
+.chat-area { flex: 1; display: flex; flex-direction: column; }
+.chat-container {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Message bubbles */
+.message { display: flex; margin-bottom: 12px; }
+.message.user { justify-content: flex-end; }
+.message.bot  { justify-content: flex-start; }
+.bubble {
+  max-width: 60%;
+  padding: 12px;
+  border-radius: 8px;
+  line-height: 1.4;
+}
+.message.user .bubble { background: #40414F; border-bottom-right-radius: 0; }
+.message.bot  .bubble { background: #444654; border-bottom-left-radius: 0; }
+
+/* Typing‐indicator dots */
+.typing-bubble {
+  display: inline-flex;
+  align-items: center;
+}
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  margin: 0 3px;
+  background: #ECECF1;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: blink 1.4s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0.3; }
+  40%         { opacity: 1;   }
+}
+
+/* Input area */
+.input-area {
+  display: flex;
+  padding: 12px;
+  background: #202123;
+}
+.input-area textarea {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background: #40414F;
+  color: #ECECF1;
+  resize: none;
+  height: 50px;
+}
+.input-area button {
+  margin-left: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background: #10A37F;
+  color: #fff;
+  cursor: pointer;
+}
+.input-area button:hover { background: #0E8E6A; }
+
+/* keep bullets inside the bubble */
+.bubble ul,
+.bubble ol {
+  list-style-position: inside;    /* bullet/number lives inside the content box */
+  padding-left: 1em;              /* indent the list items */
+  margin: 0.5em 0;                /* a bit of vertical breathing room */
+}
+
+/* tighten up each list item */
+.bubble li {
+  margin-bottom: 0.25em;
+}
+
+
+/* styles and stuff for the homepage and what not */
+
+/* ====== Top Nav (dark) ====== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #202123;
+  border-bottom: 1px solid #2a2b33;
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  font-weight: 600;
+  color: #ECECF1;
+  text-decoration: none;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+.nav-links a {
+  display: inline-block;
+  padding: 8px 12px;
+  color: #ECECF1;
+  text-decoration: none;
+  border-radius: 6px;
+}
+.nav-links a:hover {
+  background: #2a2b33;
+}
+.nav-links a[aria-current="page"] {
+  background: #10A37F;
+  color: #fff;
+}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <h2>Chats</h2>
+      <button id="newChatBtn" class="new-chat">+ New Chat</button>
+      <ul id="chatList" class="chat-list"></ul>
+      <div class="key-section">
+        <input type="password" id="apiKeyInput" placeholder="Paste your Gemini API Key" />
+        <button id="saveKeyBtn">Save Key</button>
+      </div>
+    </aside>
+
+    <section class="chat-area">
+      <div id="chatContainer" class="chat-container"></div>
+      <div class="input-area">
+        <textarea id="promptInput" placeholder="Type your message…"></textarea>
+        <button id="sendBtn">Send</button>
+      </div>
+    </section>
+  </div>
+
+  <script>// --------- State & Storage Helpers ----------
+const STORAGE_KEY = 'geminiChatApp';
+
+function loadState() {
+  return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+}
+
+function saveState(state) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+// --------- Main ----------
+document.addEventListener('DOMContentLoaded', () => {
+  const chatListEl    = document.getElementById('chatList');
+  const newChatBtn    = document.getElementById('newChatBtn');
+  const saveKeyBtn    = document.getElementById('saveKeyBtn');
+  const apiKeyInput   = document.getElementById('apiKeyInput');
+  const chatContainer = document.getElementById('chatContainer');
+  const promptInput   = document.getElementById('promptInput');
+  const sendBtn       = document.getElementById('sendBtn');
+
+  // Load or init state
+  const state = loadState();
+  state.chats         ||= [];
+  state.activeChatId  ||= null;
+  state.apiKey        ||= '';
+  apiKeyInput.value = state.apiKey;
+
+  // Render sidebar chat list
+  function renderChatList() {
+    chatListEl.innerHTML = '';
+    state.chats.forEach((chat, idx) => {
+      const li = document.createElement('li');
+      li.className = 'chat-item' + (chat.id === state.activeChatId ? ' active' : '');
+
+      // title
+      const span = document.createElement('span');
+      span.textContent = chat.title;
+      li.appendChild(span);
+
+      // actions wrapper
+      const actions = document.createElement('div');
+      actions.className = 'chat-actions';
+
+      // rename button
+      const renameBtn = document.createElement('button');
+      renameBtn.className = 'rename-btn';
+      renameBtn.innerText = '✏️';
+      renameBtn.onclick = e => {
+        e.stopPropagation();
+        const newName = prompt('Rename chat:', chat.title);
+        if (newName?.trim()) {
+          chat.title = newName.trim();
+          saveState(state);
+          renderChatList();
+        }
+      };
+      actions.appendChild(renameBtn);
+
+      // delete button
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'delete-btn';
+      deleteBtn.innerText = '🗑️';
+      deleteBtn.onclick = e => {
+        e.stopPropagation();
+        if (!confirm(`Delete chat "${chat.title}"?`)) return;
+        state.chats.splice(idx, 1);
+        if (state.activeChatId === chat.id) {
+          if (state.chats.length) {
+            state.activeChatId = state.chats[Math.max(0, idx - 1)].id;
+          } else {
+            state.activeChatId = null;
+          }
+        }
+        saveState(state);
+        if (state.chats.length === 0) {
+          newChatBtn.click();
+        } else {
+          renderChatList();
+          renderMessages();
+        }
+      };
+      actions.appendChild(deleteBtn);
+
+      li.appendChild(actions);
+
+      // activate on click
+      li.onclick = () => {
+        state.activeChatId = chat.id;
+        saveState(state);
+        renderChatList();
+        renderMessages();
+      };
+
+      chatListEl.appendChild(li);
+    });
+  }
+
+  // Render messages for active chat
+  function renderMessages() {
+    chatContainer.innerHTML = '';
+    const chat = state.chats.find(c => c.id === state.activeChatId);
+    if (!chat) return;
+    chat.messages.forEach(m => addMessageToDOM(m.sender, m.text));
+  }
+
+  // Add a message bubble (with Markdown)
+  function addMessageToDOM(who, text) {
+    const m = document.createElement('div');
+    m.className = `message ${who}`;
+    const b = document.createElement('div');
+    b.className = 'bubble';
+    const rawHtml = marked.parse(text);
+    b.innerHTML = DOMPurify.sanitize(rawHtml);
+    m.appendChild(b);
+    chatContainer.appendChild(m);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+  }
+
+  // Typing indicator
+  function showTyping() {
+    hideTyping();
+    const m = document.createElement('div');
+    m.id = 'typing-indicator';
+    m.className = 'message bot';
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble typing-bubble';
+    for (let i = 0; i < 3; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'typing-dot';
+      bubble.appendChild(dot);
+    }
+    m.appendChild(bubble);
+    chatContainer.appendChild(m);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+  }
+  function hideTyping() {
+    document.getElementById('typing-indicator')?.remove();
+  }
+
+  // Send prompt to Gemini
+  async function sendToGemini(prompt) {
+    showTyping();
+    try {
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${state.apiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+        }
+      );
+      const data = await res.json();
+      hideTyping();
+      if (data.error) throw new Error(data.error.message);
+      return data.candidates[0].content.parts[0].text;
+    } catch (err) {
+      hideTyping();
+      return `Error: ${err.message}`;
+    }
+  }
+
+  // Handle sending a message
+  async function handleSend() {
+    const text = promptInput.value.trim();
+    if (!text) return;
+    if (!state.apiKey) return alert('Paste your Gemini API key first!');
+
+    const chat = state.chats.find(c => c.id === state.activeChatId);
+    if (!chat) return;
+
+    chat.messages.push({ sender: 'user', text });
+    addMessageToDOM('user', text);
+    promptInput.value = '';
+    saveState(state);
+
+    const reply = await sendToGemini(text);
+    chat.messages.push({ sender: 'bot', text: reply });
+    addMessageToDOM('bot', reply);
+    saveState(state);
+  }
+  // inside your DOMContentLoaded, after defining handleSend():
+
+promptInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    handleSend();
+  }
+});
+
+
+  // New chat
+  newChatBtn.addEventListener('click', () => {
+    const newId = Date.now().toString();
+    const title = `Chat ${state.chats.length + 1}`;
+    state.chats.push({ id: newId, title, messages: [] });
+    state.activeChatId = newId;
+    saveState(state);
+    renderChatList();
+    renderMessages();
+  });
+
+  // Save API key
+  saveKeyBtn.addEventListener('click', () => {
+    state.apiKey = apiKeyInput.value.trim();
+    saveState(state);
+    alert('✅ Key saved');
+  });
+
+  // Send triggers
+  sendBtn.addEventListener('click', handleSend);
+  promptInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  });
+
+  // On load: ensure at least one chat exists
+  if (state.chats.length === 0) {
+    newChatBtn.click();
+  } else {
+    renderChatList();
+    renderMessages();
+  }
+});
+</script>
+</body>
+</html>
